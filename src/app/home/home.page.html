@@ -2,7 +2,7 @@
      <h1 class="align">Mails</h1>
      
      <ion-grid>
-          <app-mail-box *ngFor = "let mail of content" [content] = "mail"></app-mail-box>
+          <app-mail-box *ngFor = "let mail of content" [content] = "mail" (deleteEvent) = 'deleteMail($event)'></app-mail-box>
      </ion-grid>  
 
      <ion-fab horizontal="center" vertical="bottom" slot="fixed" (click)="addMail()">

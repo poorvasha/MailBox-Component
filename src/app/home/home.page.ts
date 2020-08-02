@@ -84,6 +84,11 @@ async addMail(){
   await alert.present();
   }
 
+  deleteMail(index){
+    
+    this.content.splice(this.content.indexOf(index), 1);
+  }
+
 
 
 

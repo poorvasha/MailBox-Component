@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+//import { EventEmitter } from 'events';
 
 @Component({
   selector: 'app-mail-box',
@@ -11,5 +12,11 @@ export class MailBoxComponent implements OnInit {
 
   @Input() content;
 
+  @Output() deleteEvent = new EventEmitter();
+
   ngOnInit() {}
+
+  deleteMail(){
+    this.deleteEvent.emit(this.content);
+  }
 }
