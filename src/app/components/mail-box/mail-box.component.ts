@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-//import { EventEmitter } from 'events';
+import { IObjects } from '../../../Interfaces/MailBoxInterface';
 
 @Component({
   selector: 'app-mail-box',
@@ -10,13 +10,17 @@ export class MailBoxComponent implements OnInit {
 
   constructor() { }
 
-  @Input() content;
+  // to get objects for homepage
+  @Input() content : IObjects;
 
-  @Output() deleteEvent = new EventEmitter();
+  // to send delete function to homepage
+  @Output() delete = new EventEmitter();
 
   ngOnInit() {}
 
+  // function to delete mail
   deleteMail(){
-    this.deleteEvent.emit(this.content);
+    // delete property with emit funtion parameter and the value is object.
+    this.delete.emit(this.content);
   }
 }

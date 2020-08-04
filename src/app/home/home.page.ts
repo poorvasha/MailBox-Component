@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
+import { IObjects } from '../../Interfaces/MailBoxInterface';
+import { element } from 'protractor';
 
 
 @Component({
@@ -8,26 +10,24 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
-content : any = [];
-image: any;
-name: any;
-des: any;
-id : any;
-newID : any;
-newObj : any;
 
-constructor(public alertController: AlertController) {
+// declarations
+content: Array<IObjects>;
+newID: any;
+newObj: IObjects;
 
-}
+
+constructor(public alertController: AlertController) {}
+
 
 ngOnInit() {
 
   // Array of objects to display mails
   this.content = [
 
-    {id: 0, image: 1, name:  'Ramya', des: 'mental'},
-    {id: 1, image: 1, name:  'yuva', des: 'mental'},
-    {id: 2, image: 1, name:  'Musraf', des: 'mental'},
+    {id: 0, image: '1', name:  'Ramya', des: 'mental'},
+    {id: 4, image: '1', name:  'yuva', des: 'mental'},
+    {id: 44, image: '1', name:  'Musraf', des: 'mental'},
 
   ]
 
@@ -48,7 +48,7 @@ async addMail(){
         type: 'text',
         placeholder: 'Enter Name'
       },
-      
+
       {
         name: 'paragraph',
         id: 'paragraph',
@@ -69,10 +69,15 @@ async addMail(){
         handler: (alertData) => {
 
           // to store the increment of the ID value after adding new mail
-          this.newID = (this.content[this.content.length-1].id)+1;
+          this.newID = (this.content[this.content.length - 1].id) + 1;
 
           // creating new object for new mail.
-          this.newObj = {id : this.newID, image: 1, name : alertData.name, des : alertData.paragraph};
+          this.newObj = {
+                          id : this.newID,
+                          image: "1",
+                          name : alertData.name,
+                          des : alertData.paragraph
+                        };
 
           // to push the newly created obj in array
           this.content.push(this.newObj);
@@ -84,13 +89,20 @@ async addMail(){
   await alert.present();
   }
 
+
+
+  // funtion passed from child Component to delete mail.
   deleteMail(index){
-    
-    this.content.splice(this.content.indexOf(index), 1);
+
+    // splice method is used to delete object.
+    // this.content.splice(this.content.indexOf(index), 1);
+
+    // filter method is used to delete.
+    this.content = this.content.filter(function(element){
+       return  element.id !== index.id;
+     });
+
   }
-
-
-
 
 
 }

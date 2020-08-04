@@ -1,14 +1,22 @@
 <ion-content>
+     <!-- HEADER STARTS -->
      <h1 class="align">Mails</h1>
-     
-     <ion-grid>
-          <app-mail-box *ngFor = "let mail of content" [content] = "mail" (deleteEvent) = 'deleteMail($event)'></app-mail-box>
-     </ion-grid>  
+     <!-- HEADER ENDS -->
 
+     <!-- CONTENT STARTS-->
+     <!-- child component(Mail-box.component) -->
+     <ion-grid>
+          <app-mail-box *ngFor = "let mail of content" [content] = "mail" (delete) = 'deleteMail($event)'></app-mail-box>
+     </ion-grid> 
+      <!-- CONTENT ENDS -->
+
+      <!-- FOOTER START -->
+      <!-- Plus fab -->
      <ion-fab horizontal="center" vertical="bottom" slot="fixed" (click)="addMail()">
         <ion-fab-button>
           <ion-icon name="add"></ion-icon>
         </ion-fab-button>
      </ion-fab>
+     <!-- FOOTER ENDS -->
 
 </ion-content>
