@@ -1,5 +1,7 @@
 {
   "name": "MailBox-Component",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
